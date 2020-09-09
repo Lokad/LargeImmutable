@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lokad.LargeImmutable", "src\Lokad.LargeImmutable.csproj", "{3789BFAC-0FF8-4DD5-9C78-AFE97710C7DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lokad.LargeImmutable.Tests", "test\Lokad.LargeImmutable.Tests.csproj", "{7BE8C9BD-2A13-4C5B-B172-5FDED4D216A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3789BFAC-0FF8-4DD5-9C78-AFE97710C7DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3789BFAC-0FF8-4DD5-9C78-AFE97710C7DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3789BFAC-0FF8-4DD5-9C78-AFE97710C7DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3789BFAC-0FF8-4DD5-9C78-AFE97710C7DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BE8C9BD-2A13-4C5B-B172-5FDED4D216A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BE8C9BD-2A13-4C5B-B172-5FDED4D216A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BE8C9BD-2A13-4C5B-B172-5FDED4D216A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BE8C9BD-2A13-4C5B-B172-5FDED4D216A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {626F58DB-E572-444D-872A-387267D1D309}
+	EndGlobalSection
+EndGlobal
