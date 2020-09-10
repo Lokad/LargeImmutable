@@ -303,37 +303,20 @@ namespace Lokad.LargeImmutable
                     return stream.Position - startPosition;
                 }
 
-                // Copies a backed value to the stream, returns its end offset (relative
-                // to the startPosition)
-                long CopyValue(int index)
-                {
-                    var oldOffsets = MemoryMarshal.Cast<byte,long>(_shared.Offsets.Span);
-                    var oldStart = oldOffsets[index];
-                    var length = (int)(oldOffsets[index + 1] - oldStart);
-
-                    if (length > 0)
-                    {
-                        if (copyArray.Length < length)
-                            copyArray = new byte[Math.Max(4096, length)];
-
-                        // TODO: don't use a buffer to copy bytes
-                        _shared.Backing.AsMemory(oldStart, length).Span.CopyTo(copyArray);
-                        stream.Write(copyArray, 0, length);
-                    }
-
-                    return stream.Position - startPosition;
-                }
-
                 for (var i = 0; i < _shared.Backed; ++i)
                 {
-                    if (_overwritten.TryGetValue(i, out var value))
-                    {
-                        offsets[i + 1] = WriteValue(value);
-                    }
-                    else
-                    {
-                        offsets[i + 1] = CopyValue(i);
-                    }
+                    offsets[i + 1] = _overwritten.TryGetValue(i, out var value)
+                        ? WriteValue(value)
+                        // TODO: this is a low-performance, high-resilience way of copying
+                        // data by actively deserializing every item and serializing it 
+                        // again to the new stream. 
+                        // 
+                        // Pros: it detects data corruption, instead of just copying garbage.
+                        // Cons: it's slower than blitting.
+                        //
+                        // In the future, we want to allow a choice of whether to blit or 
+                        // deserialize (speed or resilience).
+                        : WriteValue(ReadBacked(_shared, i));
                 }
 
                 for (var i = 0; i < _unbacked.Count; ++i)
